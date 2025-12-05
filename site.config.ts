@@ -2,9 +2,9 @@
  * Centralized site configuration, add whatever you need here.
  */
 export default {
-  siteTitle: "Convex SaaS",
+  siteTitle: "ScriptAI",
   siteDescription:
-    "A Lightweight, Production-Ready Convex Stack for your next SaaS Application.",
+    "AI-powered script writing assistant for creating high-retention short-form video content.",
   siteUrl: "https://convex.dev",
   siteImage: "/images/og-image.png",
   favicon: "/favicon.ico",

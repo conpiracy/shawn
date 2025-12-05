@@ -126,17 +126,16 @@ function Index() {
             {siteConfig.siteTitle}
           </Button>
           <h1 className="text-center text-6xl font-bold leading-tight text-primary md:text-7xl lg:leading-tight">
-            Production Ready
+            AI-Powered Script Writing
             <br />
-            SaaS Stack for Convex
+            for Short-Form Video
           </h1>
           <p className="max-w-screen-md text-center text-lg !leading-normal text-muted-foreground md:text-xl">
-            Launch in hours with a modern{" "}
+            Generate compelling hooks, complete scripts, and topic ideas{" "}
             <span className="font-medium text-primary">
-              Production-Ready Stack
+              for TikTok, Instagram Reels, and YouTube Shorts
             </span>
-            <br className="hidden lg:inline-block" /> Stripe integration.
-            TanStack-powered. Open Source.
+            <br className="hidden lg:inline-block" /> Powered by AI. Built for creators.
           </p>
           <div className="mt-2 flex w-full items-center justify-center gap-2">
             <Link
