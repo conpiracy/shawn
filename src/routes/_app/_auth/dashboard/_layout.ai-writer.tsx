@@ -41,12 +41,10 @@ export default function AIWriter() {
 
   const sendMessage = useMutation({
     mutationFn: async (message: string) => {
-      const userMessage: Message = {
-        role: "user",
-        content: message,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, userMessage]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "user", content: message, timestamp: new Date() },
+      ]);
 
       const response = await chatAction({
         message,
@@ -55,12 +53,10 @@ export default function AIWriter() {
         tone: tone || undefined,
       });
 
-      const assistantMessage: Message = {
-        role: "assistant",
-        content: response.response,
-        timestamp: new Date(),
-      };
-      setMessages((prev) => [...prev, assistantMessage]);
+      setMessages((prev) => [
+        ...prev,
+        { role: "assistant", content: response.response, timestamp: new Date() },
+      ]);
 
       return response;
     },

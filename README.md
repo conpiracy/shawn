@@ -1,57 +1,83 @@
-<h1 align="center">
-  Convex SaaS
-</h1>
+# ScriptAI - AI Video Script Writer
 
-<div align="center">
-  <p>
-  A production-ready Convex Stack for your next SaaS application with Stripe integration, TanStack, Resend, Tailwindcss, and shadcn.
-  </p>
-</div>
+AI assistant for creating high-retention short-form video content for TikTok, Instagram Reels, and YouTube Shorts.
 
-<div align="center">
-    <a href="https://convex-saas.netlify.app">Live Demo</a> |  <a href="https://github.com/get-convex/convex-saas/tree/main/docs">Documentation</a>
-  <div align="center"><br>
-  <a href="https://labs.convex.dev/convex-saas"> <img src="https://github.com/get-convex/convex-saas/blob/v1markchanges/public/images/convexsaas.png" alt="convex saas" /></a>
-</div>
-   
-  </p>
-</div>
+## Quick Start
 
-# Features
+1. **Add your OpenAI API key to `.env`:**
+   ```
+   OPENAI_API_KEY=sk-your-key-here
+   ```
 
-Features provided out of the box:
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-- 🧩 **Convex**: A complete, reactive, typesafe backend with authentication and file storage.
-- ⚡ **Vite**: Next-Gen Frontend Tooling.
-- 🛍️ **Stripe**: Subscription Plans, Customer Portal, and more.
-- 🔑 **Authentication**: Email Code and Social Logins.
-- 🎨 **TailwindCSS**: Utility-First CSS Framework.
-- 📐 **ShadCN**: Composable React components.
-- 🌙 **Easy Theming**: Switch between Light and Dark modes with ease.
-- 🗺️ **TanStack Router**: Simple Route Definitions.
-- 📧 **Resend**: Email for Developers.
-- 💌 **React Email**: Customizable Emails with React.
-- 📋 **Conform**: Type-Safe Form Validation based on Web Fundamentals.
-- 📥 **File Uploads**: Profile Picture Uploads with Convex.
-- 🌐 **I18N**: Internationalization for your App.
-- 🧰 **TanStack Development Tools**: Enhanced Development Experience.
-- 💅 **Modern UI**: Carefully crafted UI with a Modern Design System.
-- 🏕 **Custom Pages**: Landing, Onboarding, Dashboard and Admin Pages.
-- 📱 **Responsive**: Works on all devices, from Mobile to Desktop.
--
+   (An `.npmrc` file is included to handle dependency conflicts automatically)
 
-## [Live Demo](https://convex-saas.netlify.app)
+3. **Run the app:**
+   ```bash
+   npm run dev
+   ```
 
-> [!NOTE]
-> Convex SaaS is an Open Source Template that is a direct port of the amazing
-> work of [Daniel Kanem](https://twitter.com/DanielKanem) in [Remix SaaS](https://github.com/dev-xo/remix-saas).
-> As that template does, this one shares common bits of code with: [Indie
-> Stack](https://github.com/remix-run/indie-stack), [Epic
-> Stack](https://github.com/epicweb-dev/epic-stack), [Supa Stripe
-> Stack](https://github.com/rphlmr/supa-stripe-stack), and some other amazing
-> Open Source resources. Check them out, please!
+   **IMPORTANT**: You must run the dev server at least once before building. This generates:
+   - Convex API types in `convex/_generated/`
+   - TanStack Router types in `src/routeTree.gen.ts`
 
-## Getting Started
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
 
-Check out the [Getting Started Documentation](https://github.com/get-convex/convex-saas/tree/main/docs) to get up
-and running.
+## Features
+
+- **AI Chat Interface** - Generate hooks, scripts, and topic ideas
+- **Script Library** - Save and organize your content
+- **Supabase Database** - Persistent storage with RLS
+- **Convex Backend** - Real-time, type-safe API
+- **Stripe Integration** - Ready for Pro subscriptions
+- **Authentication** - Email and social logins
+
+## Tech Stack
+
+- React + Vite + TanStack Router
+- Convex (backend)
+- Supabase (database)
+- OpenAI GPT-4 Turbo
+- Tailwind CSS
+
+## Simplified Architecture
+
+The AI feature is streamlined:
+- **Single AI file** (`convex/ai.ts`) - 80 lines total, just calls OpenAI
+- **No Zod in AI code** - Uses Convex's built-in validation (`v.*`)
+- **Plain React state** - AI Writer uses simple `useState`, no forms library
+- **Direct Supabase** - Database with RLS, no ORM
+
+Note: Auth pages (login/settings) still use TanStack Form for validation.
+
+## Project Structure
+
+```
+convex/
+  ai.ts              # AI chat action
+  app.ts             # User management
+
+src/routes/_app/_auth/dashboard/
+  _layout.ai-writer.tsx    # AI interface
+  _layout.scripts.tsx      # Script library
+```
+
+## Known Issues
+
+**Build requires types**: The project won't build until you run `npm run dev` at least once. This generates:
+- Convex API types (`api.ai.*` functions)
+- TanStack Router types (route definitions)
+
+Both are auto-generated and gitignored.
+
+## Deployment
+
+Frontend: `npm run build` → deploy `dist/` to Netlify/Vercel
+Backend: `npx convex deploy`
