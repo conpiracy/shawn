@@ -23,7 +23,9 @@ import { Route as AppAuthDashboardLayoutImport } from './routes/_app/_auth/dashb
 import { Route as AppAuthDashboardLayoutIndexImport } from './routes/_app/_auth/dashboard/_layout.index'
 import { Route as AppAuthOnboardingLayoutUsernameImport } from './routes/_app/_auth/onboarding/_layout.username'
 import { Route as AppAuthDashboardLayoutSettingsImport } from './routes/_app/_auth/dashboard/_layout.settings'
+import { Route as AppAuthDashboardLayoutScriptsImport } from './routes/_app/_auth/dashboard/_layout.scripts'
 import { Route as AppAuthDashboardLayoutCheckoutImport } from './routes/_app/_auth/dashboard/_layout.checkout'
+import { Route as AppAuthDashboardLayoutAiWriterImport } from './routes/_app/_auth/dashboard/_layout.ai-writer'
 import { Route as AppAuthDashboardLayoutSettingsIndexImport } from './routes/_app/_auth/dashboard/_layout.settings.index'
 import { Route as AppAuthDashboardLayoutSettingsBillingImport } from './routes/_app/_auth/dashboard/_layout.settings.billing'
 
@@ -103,9 +105,21 @@ const AppAuthDashboardLayoutSettingsRoute =
     getParentRoute: () => AppAuthDashboardLayoutRoute,
   } as any)
 
+const AppAuthDashboardLayoutScriptsRoute =
+  AppAuthDashboardLayoutScriptsImport.update({
+    path: '/scripts',
+    getParentRoute: () => AppAuthDashboardLayoutRoute,
+  } as any)
+
 const AppAuthDashboardLayoutCheckoutRoute =
   AppAuthDashboardLayoutCheckoutImport.update({
     path: '/checkout',
+    getParentRoute: () => AppAuthDashboardLayoutRoute,
+  } as any)
+
+const AppAuthDashboardLayoutAiWriterRoute =
+  AppAuthDashboardLayoutAiWriterImport.update({
+    path: '/ai-writer',
     getParentRoute: () => AppAuthDashboardLayoutRoute,
   } as any)
 
@@ -195,11 +209,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLoginLayoutIndexImport
       parentRoute: typeof AppLoginLayoutImport
     }
+    '/_app/_auth/dashboard/_layout/ai-writer': {
+      id: '/_app/_auth/dashboard/_layout/ai-writer'
+      path: '/ai-writer'
+      fullPath: '/dashboard/ai-writer'
+      preLoaderRoute: typeof AppAuthDashboardLayoutAiWriterImport
+      parentRoute: typeof AppAuthDashboardLayoutImport
+    }
     '/_app/_auth/dashboard/_layout/checkout': {
       id: '/_app/_auth/dashboard/_layout/checkout'
       path: '/checkout'
       fullPath: '/dashboard/checkout'
       preLoaderRoute: typeof AppAuthDashboardLayoutCheckoutImport
+      parentRoute: typeof AppAuthDashboardLayoutImport
+    }
+    '/_app/_auth/dashboard/_layout/scripts': {
+      id: '/_app/_auth/dashboard/_layout/scripts'
+      path: '/scripts'
+      fullPath: '/dashboard/scripts'
+      preLoaderRoute: typeof AppAuthDashboardLayoutScriptsImport
       parentRoute: typeof AppAuthDashboardLayoutImport
     }
     '/_app/_auth/dashboard/_layout/settings': {
@@ -248,7 +276,9 @@ export const routeTree = rootRoute.addChildren({
     AppAuthRoute: AppAuthRoute.addChildren({
       AppAuthDashboardRoute: AppAuthDashboardRoute.addChildren({
         AppAuthDashboardLayoutRoute: AppAuthDashboardLayoutRoute.addChildren({
+          AppAuthDashboardLayoutAiWriterRoute,
           AppAuthDashboardLayoutCheckoutRoute,
+          AppAuthDashboardLayoutScriptsRoute,
           AppAuthDashboardLayoutSettingsRoute:
             AppAuthDashboardLayoutSettingsRoute.addChildren({
               AppAuthDashboardLayoutSettingsBillingRoute,
@@ -326,7 +356,9 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_app/_auth/dashboard/_layout.tsx",
       "parent": "/_app/_auth/dashboard",
       "children": [
+        "/_app/_auth/dashboard/_layout/ai-writer",
         "/_app/_auth/dashboard/_layout/checkout",
+        "/_app/_auth/dashboard/_layout/scripts",
         "/_app/_auth/dashboard/_layout/settings",
         "/_app/_auth/dashboard/_layout/"
       ]
@@ -349,8 +381,16 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "_app/login/_layout.index.tsx",
       "parent": "/_app/login/_layout"
     },
+    "/_app/_auth/dashboard/_layout/ai-writer": {
+      "filePath": "_app/_auth/dashboard/_layout.ai-writer.tsx",
+      "parent": "/_app/_auth/dashboard/_layout"
+    },
     "/_app/_auth/dashboard/_layout/checkout": {
       "filePath": "_app/_auth/dashboard/_layout.checkout.tsx",
+      "parent": "/_app/_auth/dashboard/_layout"
+    },
+    "/_app/_auth/dashboard/_layout/scripts": {
+      "filePath": "_app/_auth/dashboard/_layout.scripts.tsx",
       "parent": "/_app/_auth/dashboard/_layout"
     },
     "/_app/_auth/dashboard/_layout/settings": {

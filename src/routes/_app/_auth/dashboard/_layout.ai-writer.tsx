@@ -5,7 +5,7 @@ import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import siteConfig from "~/site.config";
 import { useMutation } from "@tanstack/react-query";
-import { useConvexMutation } from "@convex-dev/react-query";
+import { useConvexAction } from "@convex-dev/react-query";
 import { api } from "~/convex/_generated/api";
 
 export const Route = createFileRoute("/_app/_auth/dashboard/_layout/ai-writer")({
@@ -37,7 +37,7 @@ export default function AIWriter() {
   const [tone, setTone] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const chatAction = useConvexMutation(api.ai.chat);
+  const chatAction = useConvexAction(api.ai.chat);
 
   const sendMessage = useMutation({
     mutationFn: async (message: string) => {

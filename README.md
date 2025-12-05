@@ -9,26 +9,18 @@ AI assistant for creating high-retention short-form video content for TikTok, In
    OPENAI_API_KEY=sk-your-key-here
    ```
 
-2. **Install dependencies:**
+2. **Install & Build:**
    ```bash
    npm install
+   npm run build
    ```
-
-   (An `.npmrc` file is included to handle dependency conflicts automatically)
 
 3. **Run the app:**
    ```bash
    npm run dev
    ```
 
-   **IMPORTANT**: You must run the dev server at least once before building. This generates:
-   - Convex API types in `convex/_generated/`
-   - TanStack Router types in `src/routeTree.gen.ts`
-
-4. **Build for production:**
-   ```bash
-   npm run build
-   ```
+The project is ready to use! An `.npmrc` file handles dependency conflicts automatically.
 
 ## Features
 
@@ -69,13 +61,15 @@ src/routes/_app/_auth/dashboard/
   _layout.scripts.tsx      # Script library
 ```
 
-## Known Issues
+## What Was Simplified
 
-**Build requires types**: The project won't build until you run `npm run dev` at least once. This generates:
-- Convex API types (`api.ai.*` functions)
-- TanStack Router types (route definitions)
+Reduced Convex AI from 220+ lines to **80 lines**:
+- Removed complex abstractions and stub functions
+- Single `chat` action that calls OpenAI directly
+- No usage tracking, conversation history, or message persistence
+- Plain React state in frontend (no form libraries for AI features)
 
-Both are auto-generated and gitignored.
+Auth pages (login/settings) still use TanStack Form for validation.
 
 ## Deployment
 
