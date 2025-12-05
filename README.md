@@ -4,10 +4,13 @@ AI assistant for creating high-retention short-form video content for TikTok, In
 
 ## Quick Start
 
-1. **Add your OpenAI API key to `.env`:**
+1. **Configure `.env` file:**
    ```
+   VITE_CONVEX_URL=https://your-project.convex.cloud
    OPENAI_API_KEY=sk-your-key-here
    ```
+
+   Get your Convex URL from [dashboard.convex.dev](https://dashboard.convex.dev) after creating a project.
 
 2. **Install & Build:**
    ```bash
